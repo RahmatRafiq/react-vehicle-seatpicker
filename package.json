@@ -1,0 +1,56 @@
+{
+  "name": "react-vehicle-seatpicker",
+  "version": "1.0.0",
+  "description": "A flexible and customizable React component for vehicle seat selection (bus, minibus, etc.)",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "prepare": "npm run build",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "react",
+    "seat-picker",
+    "bus",
+    "minibus",
+    "vehicle",
+    "seat-selection",
+    "typescript",
+    "component-library"
+  ],
+  "author": "RahmatRafiq",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.0",
+    "vite-plugin-dts": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RahmatRafiq/react-vehicle-seatpicker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RahmatRafiq/react-vehicle-seatpicker/issues"
+  },
+  "homepage": "https://github.com/RahmatRafiq/react-vehicle-seatpicker#readme"
+}
