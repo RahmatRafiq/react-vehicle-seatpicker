@@ -1,0 +1,37 @@
+{
+  "name": "react-seatpicker",
+  "version": "1.0.0",
+  "description": "Seat picker component for buses and minibuses with multi-floor support (React + TS).",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --watch --format cjs,esm --dts"
+  },
+  "peerDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.2"
+  },
+  "keywords": [
+    "react",
+    "seatpicker",
+    "bus",
+    "minibus",
+    "reservation"
+  ],
+  "author": "Rahmat",
+  "license": "MIT",
+  "dependencies": {
+    "clsx": "^2.1.1"
+  }
+}
