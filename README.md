@@ -5,6 +5,12 @@ Komponen React yang fleksibel untuk pemilihan kursi kendaraan (bus, minibus, elf
 [![NPM Version](https://img.shields.io/npm/v/react-vehicle-seatpicker)](https://www.npmjs.com/package/react-vehicle-seatpicker)
 [![License](https://img.shields.io/npm/l/react-vehicle-seatpicker)](https://github.com/RahmatRafiq/react-vehicle-seatpicker/blob/main/LICENSE)
 
+## Preview
+
+![React Vehicle Seat Picker Preview](./image.png)
+
+Di atas adalah contoh tampilan komponen seat picker dengan berbagai tipe kursi (regular, VIP, sleeper) dan legend yang menunjukkan status kursi.
+
 ## Features
 
 - 🚌 Mendukung berbagai tipe kendaraan (bus, minibus, elf)
