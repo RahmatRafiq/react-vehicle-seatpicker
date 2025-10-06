@@ -6,6 +6,7 @@ import {
   SeatLegend
 } from "./SeatComponents";
 import ToggleTabs from './ToggleTabs';
+import styles from './SeatPicker.module.css';
 
 function generateBusLayout(
   seatCount: number, 
@@ -167,12 +168,12 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <SeatLegend />
       
       {/* Floor Selector for Multi-Floor */}
       {floorsConfig && Object.keys(floorsConfig).length > 0 && (
-        <div className="flex justify-center mb-4">
+        <div className={styles.floorSelector}>
           <ToggleTabs
             tabs={Object.keys(floorsConfig).map(floor => `floor-${floor}`)}
             active={`floor-${selectedFloor || '1'}`}
@@ -184,12 +185,12 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
         </div>
       )}
       
-      <h3 className="mb-4 font-bold text-center text-blue-700 text-lg">
+      <h3 className={styles.title}>
         Pilih Kursi {floorsConfig ? `(Lantai ${selectedFloor || '1'})` : ''}
       </h3>
       
       <BusFrame vehicleType={vehicleType}>
-        <div className="flex flex-col gap-2 items-center">
+        <div className={styles.seatContainer}>
           {seatLayout.map((row, i) => {
             // Check if this is a spacing row (all null seats for upper floor alignment)
             const isSpacingRow = row.every(seat => seat === null);
@@ -197,7 +198,7 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
             return (
               <div 
                 key={i} 
-                className={`flex justify-center items-center w-full gap-1 ${isSpacingRow ? 'h-6' : ''}`}
+                className={`${styles.seatRow} ${isSpacingRow ? styles.spacingRow : ''}`}
               >
                 {isSpacingRow ? (
                   // Render invisible spacing for upper floors
@@ -215,7 +216,7 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
                     ) : (
                       <div 
                         key={`aisle-${i}-${idx}`} 
-                        className="w-4 h-9"
+                        className={styles.aisle}
                       />
                     )
                   )
@@ -230,7 +231,7 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
         </div>
       </BusFrame>
       
-      <div className="mt-4 text-sm text-center">
+      <div className={styles.selectedSeats}>
         Kursi dipilih: <span className="font-bold">{selectedSeats.join(", ") || "Belum ada kursi dipilih"}</span>
       </div>
     </div>
