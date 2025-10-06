@@ -48,6 +48,43 @@ export interface DriverSeatProps {
 
 export type LegendItem = "reserved" | "selected" | "available" | "driver" | "sleeper" | "vip";
 
+// Type untuk konfigurasi legend yang spesifik untuk setiap tipe kendaraan
+export type VehicleLegendConfig = {
+  regular: {
+    show: boolean;
+    items: LegendItem[];
+    labels: {
+      reserved: string;
+      selected: string;
+      available: string;
+      driver: string;
+    };
+  };
+  vip: {
+    show: boolean;
+    items: LegendItem[];
+    labels: {
+      reserved: string;
+      selected: string;
+      available: string;
+      driver: string;
+      vip: string;
+    };
+  };
+  sleeper: {
+    show: boolean;
+    items: LegendItem[];
+    labels: {
+      reserved: string;
+      selected: string;
+      available: string;
+      driver: string;
+      sleeper: string;
+      vip: string;
+    };
+  };
+};
+
 export interface SeatLegendProps {
     show?: boolean;
     items?: LegendItem[];
