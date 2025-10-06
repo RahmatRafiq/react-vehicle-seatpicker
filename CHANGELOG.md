@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.2] - 2025-10-06
+
+### Fixed
+- Version update to resolve npm publishing conflict
+
+## [2.0.1] - 2025-10-06
+
+### Added
+- Kustomisasi warna untuk setiap tipe kursi melalui prop `seatColors`
+- Konfigurasi legend yang dapat disesuaikan melalui prop `legendConfig`
+- Type definitions yang lebih baik untuk konfigurasi legend dan warna
+- Dukungan untuk mengatur item legend yang ditampilkan
+
+### Fixed
+- Perbaikan type checking untuk konfigurasi legend
+- Perbaikan tampilan warna kursi yang lebih konsisten
+
+### Changed
+- Peningkatan type safety dengan definisi tipe yang lebih spesifik
+- Dokumentasi yang lebih lengkap dengan contoh kustomisasi warna dan legend
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
