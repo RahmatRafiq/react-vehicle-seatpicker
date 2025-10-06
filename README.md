@@ -4,10 +4,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <div align="center">
-
-[English](#english) | [Bahasa Indonesia](#indonesia)
-
+  <h3>Choose Your Language | Pilih Bahasa</h3>
+  <a href="README.en.md"><img src="https://img.shields.io/badge/English-red.svg?style=for-the-badge" alt="English"></a>
+  <a href="README.id.md"><img src="https://img.shields.io/badge/Bahasa_Indonesia-blue.svg?style=for-the-badge" alt="Bahasa Indonesia"></a>
 </div>
+
+<p align="center">
+  <img src="image.png" alt="React Vehicle Seat Picker Screenshot" width="600"/>
+</p>
+
+---
 <p align="center">
   <img src="image.png" alt="React Vehicle Seat Picker Screenshot" width="600"/>
 </p>
