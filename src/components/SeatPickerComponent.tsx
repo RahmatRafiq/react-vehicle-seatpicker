@@ -103,6 +103,26 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
   floorsConfig,
   selectedFloor,
   onFloorChange,
+  legendConfig = {
+    show: true,
+    items: ["reserved", "selected", "available", "driver"],
+    labels: {
+      reserved: "Reserved",
+      selected: "Selected",
+      available: "Available",
+      driver: "Driver",
+      sleeper: "Sleeper",
+      vip: "VIP"
+    }
+  },
+  seatColors = {
+    reserved: "#E0E0E0",    // Light grey for reserved
+    selected: "#4CAF50",    // Green for selected
+    available: "#FFFFFF",   // White for available
+    driver: "#2196F3",     // Blue for driver
+    sleeper: "#9C27B0",    // Purple for sleeper
+    vip: "#FFC107"         // Amber for VIP
+  }
 }) => {
   const vehicleTypeToRowConfig: Record<string, number[]> = {
     minibus: [2,2,2,2],
@@ -169,7 +189,12 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
 
   return (
     <div className={styles.container}>
-      <SeatLegend />
+      <SeatLegend 
+        show={legendConfig.show}
+        items={legendConfig.items}
+        labels={legendConfig.labels}
+        colors={seatColors}
+      />
       
       {/* Floor Selector for Multi-Floor */}
       {floorsConfig && Object.keys(floorsConfig).length > 0 && (
@@ -212,6 +237,7 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
                         isReserved={reservedSeats.includes(seat.id) || reservedSeats.includes(String(seat.id)) || seat.isReserved}
                         isSelected={selectedSeats.map(String).includes(String(seat.id))}
                         onClick={() => handleSeatClick(seat)}
+                        colors={seatColors}
                       />
                     ) : (
                       <div 

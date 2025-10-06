@@ -1,5 +1,5 @@
 import React from "react";
-import type { Seat, VehicleType } from "../types";
+import type { Seat, VehicleType, SeatLegendProps, DriverSeatProps } from "../types";
 import styles from './SeatComponents.module.css';
 
 export const RegularSeatIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
@@ -35,8 +35,8 @@ export const SteeringWheelIcon: React.FC<{ size?: number }> = ({ size = 16 }) =>
     </svg>
 );
 
-export const DriverSeat: React.FC = () => (
-    <div className={styles.driverSeat}>
+export const DriverSeat: React.FC<DriverSeatProps> = ({ color }) => (
+    <div className={styles.driverSeat} style={color ? { backgroundColor: color } : undefined}>
         <SteeringWheelIcon size={14} />
     </div>
 );
@@ -46,9 +46,10 @@ export const SeatButton: React.FC<{
     isReserved: boolean;
     isSelected: boolean;
     onClick: () => void;
-}> = ({ seat, isReserved, isSelected, onClick }) => {
+    colors?: Record<string, string>;
+}> = ({ seat, isReserved, isSelected, onClick, colors }) => {
     if (seat.isDriver) {
-        return <DriverSeat />;
+        return <DriverSeat color={colors?.driver} />;
     }
 
     const getClassName = () => {
@@ -60,6 +61,18 @@ export const SeatButton: React.FC<{
         return classes.join(" ");
     };
 
+    const getStyle = () => {
+        const style: React.CSSProperties = {};
+        if (colors) {
+            if (isReserved && colors.reserved) style.backgroundColor = colors.reserved;
+            else if (isSelected && colors.selected) style.backgroundColor = colors.selected;
+            else if (seat.type === "sleeper" && colors.sleeper) style.backgroundColor = colors.sleeper;
+            else if (seat.type === "vip" && colors.vip) style.backgroundColor = colors.vip;
+            else if (colors.available) style.backgroundColor = colors.available;
+        }
+        return style;
+    };
+
     return (
         <div className={styles.seatWrapper}>
             <button
@@ -67,8 +80,9 @@ export const SeatButton: React.FC<{
                 disabled={isReserved || seat.isDriver}
                 onClick={onClick}
                 className={getClassName()}
-                title={seat.type === "sleeper" ? "Sleeper" : seat.type === "vip" ? "VIP" : isReserved ? "Sudah dipesan" : "Kursi tersedia"}
-                aria-label={seat.type === "sleeper" ? `Sleeper ${seat.number}` : seat.type === "vip" ? `VIP ${seat.number}` : isReserved ? "Sudah dipesan" : `Kursi ${seat.number}`}
+                style={getStyle()}
+                title={seat.number}
+                aria-label={`Seat ${seat.number}`}
             >
                 <span style={seat.seatRotation ? { display: 'inline-block', transform: `rotate(${seat.seatRotation}deg)` } : {}}>
                     {seat.type === "sleeper" ? (
@@ -116,43 +130,79 @@ export const BusFrame: React.FC<{ children: React.ReactNode; vehicleType?: Vehic
     );
 };
 
-export const SeatLegend: React.FC = () => (
-    <div className={styles.legendContainer}>
-        <div className={styles.legendItem}>
-            <span className={styles.legendReserved}>
-                <RegularSeatIcon size={14} />
-            </span>
-            <span className={styles.legendText}>Sudah dipesan</span>
+export const SeatLegend: React.FC<SeatLegendProps> = ({ 
+    show = true, 
+    items = ["reserved", "selected", "available", "driver", "sleeper", "vip"],
+    labels = {
+        reserved: "Sudah dipesan",
+        selected: "Dipilih",
+        available: "Tersedia",
+        driver: "Sopir",
+        sleeper: "Sleeper",
+        vip: "VIP"
+    },
+    colors
+}) => {
+    if (!show) return null;
+
+    const legendItems: Record<string, JSX.Element> = {
+        reserved: (
+            <div className={styles.legendItem}>
+                <span className={styles.legendReserved} style={colors?.reserved ? { backgroundColor: colors.reserved } : undefined}>
+                    <RegularSeatIcon size={14} />
+                </span>
+                <span className={styles.legendText}>{labels.reserved}</span>
+            </div>
+        ),
+        selected: (
+            <div className={styles.legendItem}>
+                <span className={styles.legendSelected} style={colors?.selected ? { backgroundColor: colors.selected } : undefined}>
+                    <RegularSeatIcon size={14} />
+                </span>
+                <span className={styles.legendText}>{labels.selected}</span>
+            </div>
+        ),
+        available: (
+            <div className={styles.legendItem}>
+                <span className={styles.legendAvailable} style={colors?.available ? { backgroundColor: colors.available } : undefined}>
+                    <RegularSeatIcon size={14} />
+                </span>
+                <span className={styles.legendText}>{labels.available}</span>
+            </div>
+        ),
+        driver: (
+            <div className={styles.legendItem}>
+                <span className={styles.legendDriver} style={colors?.driver ? { backgroundColor: colors.driver } : undefined}>
+                    <SteeringWheelIcon size={12} />
+                </span>
+                <span className={styles.legendText}>{labels.driver}</span>
+            </div>
+        ),
+        sleeper: (
+            <div className={styles.legendItem}>
+                <span className={styles.legendSleeper} style={colors?.sleeper ? { backgroundColor: colors.sleeper } : undefined}>
+                    <SleeperSeatIcon size={12} />
+                </span>
+                <span className={styles.legendText}>{labels.sleeper}</span>
+            </div>
+        ),
+        vip: (
+            <div className={styles.legendItem}>
+                <span className={styles.legendVip} style={colors?.vip ? { backgroundColor: colors.vip } : undefined}>
+                    <RegularSeatIcon size={14} />
+                </span>
+                <span className={styles.legendText}>{labels.vip}</span>
+            </div>
+        )
+    };
+
+    return (
+        <div className={styles.legendContainer}>
+            {items.map((item, index) => (
+                <React.Fragment key={item}>
+                    {legendItems[item]}
+                </React.Fragment>
+            ))}
         </div>
-        <div className={styles.legendItem}>
-            <span className={styles.legendSelected}>
-                <RegularSeatIcon size={14} />
-            </span>
-            <span className={styles.legendText}>Dipilih</span>
-        </div>
-        <div className={styles.legendItem}>
-            <span className={styles.legendAvailable}>
-                <RegularSeatIcon size={14} />
-            </span>
-            <span className={styles.legendText}>Tersedia</span>
-        </div>
-        <div className={styles.legendItem}>
-            <span className={styles.legendDriver}>
-                <SteeringWheelIcon size={12} />
-            </span>
-            <span className={styles.legendText}>Sopir</span>
-        </div>
-        <div className={styles.legendItem}>
-            <span className={styles.legendSleeper}>
-                <SleeperSeatIcon size={12} />
-            </span>
-            <span className={styles.legendText}>Sleeper</span>
-        </div>
-        <div className={styles.legendItem}>
-            <span className={styles.legendVip}>
-                <RegularSeatIcon size={14} />
-            </span>
-            <span className={styles.legendText}>VIP</span>
-        </div>
-    </div>
-);
+    );
+};

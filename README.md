@@ -7,9 +7,38 @@ Komponen React yang fleksibel untuk pemilihan kursi kendaraan (bus, minibus, elf
 
 ## Preview
 
-![React Vehicle Seat Picker Preview](./image.png)
+Di bawah ini adalah beberapa contoh tampilan komponen untuk berbagai tipe kendaraan:
 
-Di atas adalah contoh tampilan komponen seat picker dengan berbagai tipe kursi (regular, VIP, sleeper) dan legend yang menunjukkan status kursi.
+### Bus Single Floor
+![React Vehicle Seat Picker - Bus Single Floor](./image.png)
+Tampilan bus single floor dengan berbagai tipe kursi dan fitur:
+- Kursi regular (putih)
+- Kursi VIP (kuning)
+- Kursi sleeper (ungu)
+- Kursi yang sudah dipesan (abu-abu)
+- Kursi yang dipilih (hijau)
+- Kursi supir (biru)
+
+### Bus Double Deck
+![React Vehicle Seat Picker - Bus Double Deck](./image.png)
+Bus dengan dua lantai, menampilkan:
+- Tab pemilihan lantai (Lantai 1/2)
+- Layout yang berbeda untuk setiap lantai
+- Kursi supir hanya di lantai 1
+
+### Minibus
+![React Vehicle Seat Picker - Minibus](./image.png)
+Layout minibus dengan:
+- Layout 2-2 (2 kursi di setiap sisi)
+- Gang di tengah
+- Kursi supir di depan
+
+### ELF
+![React Vehicle Seat Picker - ELF](./image.png)
+Layout ELF dengan:
+- Konfigurasi 1-2-2-2-1
+- Gang di tengah
+- Cocok untuk kendaraan ukuran sedang
 
 ## Features
 
@@ -129,6 +158,53 @@ function CustomSeatTypesExample() {
 | `floorsConfig` | `Record<string, FloorConfig>` | Konfigurasi untuk bus multi-lantai |
 | `selectedFloor` | `string` | Lantai yang sedang aktif |
 | `onFloorChange` | `(floor: string) => void` | Callback saat lantai diubah |
+| `legendConfig` | `LegendConfig` | Konfigurasi legend (show/hide, items, labels) |
+| `seatColors` | `SeatColors` | Kustomisasi warna untuk setiap tipe kursi |
+
+## Type Definitions
+
+### Tipe Data Dasar
+```typescript
+type SeatType = "regular" | "driver" | "sleeper" | "vip" | string;
+type VehicleType = "minibus" | "bus" | "elf" | string;
+
+interface Seat {
+    id: string | number;
+    number: string;
+    isReserved: boolean;
+    isDriver?: boolean;
+    type?: SeatType;
+    seatRotation?: number;
+}
+```
+
+### Konfigurasi Legend
+```typescript
+interface LegendConfig {
+    show?: boolean;
+    items?: ("reserved" | "selected" | "available" | "driver" | "sleeper" | "vip")[];
+    labels?: {
+        reserved?: string;
+        selected?: string;
+        available?: string;
+        driver?: string;
+        sleeper?: string;
+        vip?: string;
+    };
+}
+```
+
+### Konfigurasi Warna
+```typescript
+interface SeatColors {
+    reserved?: string;
+    selected?: string;
+    available?: string;
+    driver?: string;
+    sleeper?: string;
+    vip?: string;
+}
+```
 
 ## Tipe Kursi
 
@@ -209,14 +285,39 @@ const busConfig = {
 
 ## Fitur Tambahan
 
-### Legend Kursi
-Komponen ini memiliki legend bawaan yang menampilkan:
-- Kursi yang sudah dipesan
-- Kursi yang sedang dipilih
-- Kursi yang tersedia
-- Kursi supir
-- Kursi sleeper
-- Kursi VIP
+### Kustomisasi Legend dan Warna
+
+#### Legend yang Dapat Disesuaikan
+```jsx
+<SeatPicker
+  legendConfig={{
+    show: true, // tampilkan atau sembunyikan legend
+    items: ["reserved", "selected", "available", "driver"], // pilih item yang ingin ditampilkan
+    labels: {
+      reserved: "Sudah Dipesan",
+      selected: "Dipilih",
+      available: "Tersedia",
+      driver: "Supir",
+      sleeper: "Sleeper",
+      vip: "First Class"
+    }
+  }}
+/>
+```
+
+#### Kustomisasi Warna
+```jsx
+<SeatPicker
+  seatColors={{
+    reserved: "#E0E0E0",    // Warna untuk kursi yang sudah dipesan
+    selected: "#4CAF50",    // Warna untuk kursi yang dipilih
+    available: "#FFFFFF",   // Warna untuk kursi tersedia
+    driver: "#2196F3",     // Warna untuk kursi supir
+    sleeper: "#9C27B0",    // Warna untuk kursi sleeper
+    vip: "#FFC107"         // Warna untuk kursi VIP
+  }}
+/>
+```
 
 ### Frame Kendaraan
 - Bus: Menampilkan frame bus lengkap dengan indikator depan dan belakang
