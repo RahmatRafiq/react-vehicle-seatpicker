@@ -1,10 +1,49 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
   width: 100%;
   max-width: 40rem;
   margin: 0 auto;
+  padding: 1rem;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #1d4ed8;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.seatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.seatRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.aisle {
+  width: 1rem;
+  height: 2.25rem;
+}
+
+.selectedSeats {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.selectedSeats span {
+  font-weight: bold;
 }
 
 .busFrame {
@@ -24,20 +63,33 @@
 .seatRow {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
 }
 
-.seatGap {
-  width: 1.5rem;
+.spacingRow {
+  height: 1.5rem;
 }
 
-.legend {
+.aisle {
+  width: 1rem;
+  height: 2.25rem;
+}
+
+.seatContainer {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #1d4ed8;
+  font-size: 1.125rem;
 }
 
 .legendItem {
@@ -60,4 +112,34 @@
   background-color: #f9fafb;
   border-radius: 0.5rem;
   text-align: center;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #1d4ed8;
+  font-size: 1.125rem;
+}
+
+.floorSelector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.seatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.aisle {
+  width: 1rem;
+  height: 2.25rem;
+}
+
+.spacingRow {
+  height: 1.5rem;
 }

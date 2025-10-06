@@ -8,12 +8,14 @@ export const RegularSeatIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
         width={size} 
         height={size} 
         viewBox="0 0 16 16" 
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
         style={{transform: 'rotate(180deg)'}}
     >
-        <rect x="2" y="2" width="12" height="3" rx="1" />
-        <rect x="3" y="5" width="10" height="8" rx="1" />
-        <rect x="1" y="6" width="2" height="5" rx="0.5" />
-        <rect x="13" y="6" width="2" height="5" rx="0.5" />
+        <rect x="2" y="2" width="12" height="3" rx="1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        <rect x="3" y="5" width="10" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        <rect x="1" y="6" width="2" height="5" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1" />
+        <rect x="13" y="6" width="2" height="5" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1" />
     </svg>
 );
 
