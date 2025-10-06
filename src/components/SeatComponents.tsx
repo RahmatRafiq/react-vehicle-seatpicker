@@ -100,6 +100,11 @@ export const BusFrame: React.FC<{ children: React.ReactNode; vehicleType?: Vehic
                     <div className={styles.content}>
                         {children}
                     </div>
+                    <div className={styles.busBack}>
+                        <span className={styles.busBackText}>Belakang Bus</span>
+                    </div>
+                    <div className={styles.busBackLightLeft} />
+                    <div className={styles.busBackLightRight} />
                 </>
             )}
             {vehicleType !== "bus" && (
