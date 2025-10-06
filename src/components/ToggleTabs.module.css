@@ -1,31 +1,38 @@
+/* Konversi dari Tailwind:
+inline-flex rounded-lg border border-gray-200 bg-gray-100 p-1 */
 .tabContainer {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  display: inline-flex;
+  border-radius: 0.5rem;      /* rounded-lg */
+  border: 1px solid #e5e7eb;  /* border border-gray-200 */
+  background-color: #f3f4f6;  /* bg-gray-100 */
+  padding: 0.25rem;           /* p-1 */
+  margin-bottom: 1rem;        /* mb-4 */
 }
 
+/* Konversi dari Tailwind:
+px-3 py-1 text-sm font-medium rounded-md transition-colors */
 .tab {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  background-color: #f3f4f6;
-  color: #4b5563;
+  padding: 0.75rem 1rem;      /* px-3 py-1 */
+  font-size: 0.875rem;        /* text-sm */
+  font-weight: 500;           /* font-medium */
+  border-radius: 0.375rem;    /* rounded-md */
+  transition: all 0.2s;       /* transition-colors */
+  color: #6b7280;            /* text-gray-500 */
+  border: none;
+  background: transparent;
   cursor: pointer;
-  border: 1px solid #e5e7eb;
-  transition: all 0.2s ease;
-  font-size: 0.875rem;
 }
 
+/* Konversi dari Tailwind:
+hover:text-gray-700 */
 .tab:hover {
-  background-color: #e5e7eb;
+  color: #374151;            /* text-gray-700 */
 }
 
+/* Konversi dari Tailwind:
+bg-white text-gray-900 shadow-sm */
 .active {
-  background-color: #60a5fa;
-  color: white;
-  border-color: #3b82f6;
-}
-
-.active:hover {
-  background-color: #3b82f6;
+  background-color: white;    /* bg-white */
+  color: #111827;            /* text-gray-900 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
 }

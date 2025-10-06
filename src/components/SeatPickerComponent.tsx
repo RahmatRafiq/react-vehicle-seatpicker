@@ -185,7 +185,7 @@ const SeatPickerComponent: React.FC<SeatPickerProps> = ({
         </div>
       )}
       
-      <h3 className={styles.title}>
+            <h3 className={styles.title}>
         Pilih Kursi {floorsConfig ? `(Lantai ${selectedFloor || '1'})` : ''}
       </h3>
       
