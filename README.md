@@ -1,22 +1,70 @@
 # React Vehicle Seat Picker
 
-🚌 Komponen React yang fleksibel dan dapat disesuaikan untuk pemilihan kursi kendaraan (bus, minibus, elf, dll.)
-
 [![npm version](https://badge.fury.io/js/react-vehicle-seatpicker.svg)](https://badge.fury.io/js/react-vehicle-seatpicker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## ✨ Fitur
+<div align="center">
 
-- 🎨 **UI yang Menarik**: Desain modern dengan animasi smooth
-- 🚌 **Multi Kendaraan**: Mendukung bus, minibus, elf, dan kendaraan custom
-- 🏢 **Multi Lantai**: Support untuk bus tingkat dengan floor selector
-- 🎯 **Tipe Kursi**: Regular, VIP, Sleeper, dan custom seat types
-- 🔧 **Kustomisasi**: Layout, warna, dan konfigurasi yang fleksibel
-- ♿ **Accessibility**: Support untuk screen readers dan keyboard navigation
-- 📱 **Responsive**: Tampil baik di desktop maupun mobile
-- 🎭 **TypeScript**: Full TypeScript support dengan type definitions
+[English](#english) | [Bahasa Indonesia](#indonesia)
 
-## 📦 Instalasi
+</div>
+<p align="center">
+  <img src="image.png" alt="React Vehicle Seat Picker Screenshot" width="600"/>
+</p>
+
+---
+
+# 🇺🇸 English Documentation {#english}
+
+A flexible and customizable React component for vehicle seat selection (bus, minibus, van, etc.)
+
+---
+
+# 🇮🇩 Dokumentasi Bahasa Indonesia {#indonesia}
+
+Komponen React yang fleksibel dan dapat disesuaikan untuk pemilihan kursi kendaraan (bus, minibus, elf, dll.)
+
+## [🇺🇸] Features
+
+- Modern UI with smooth animations
+- Multi-vehicle support (bus, minibus, van)
+- Multi-floor support with floor selector
+- Multiple seat types (Regular, VIP, Sleeper)
+- Flexible layout and configuration
+- Accessibility support
+- Responsive design
+- Full TypeScript support
+
+---
+
+## [🇮🇩] Fitur
+
+- UI modern dengan animasi halus
+- Mendukung berbagai jenis kendaraan (bus, minibus, elf)
+- Mendukung kendaraan bertingkat dengan pemilih lantai
+- Beragam tipe kursi (Regular, VIP, Sleeper)
+- Layout dan konfigurasi yang fleksibel
+- Mendukung aksesibilitas
+- Desain responsif
+- Dukungan TypeScript lengkap
+
+---
+
+## Installation
+
+```bash
+npm install react-vehicle-seatpicker
+```
+
+or
+
+```bash
+yarn add react-vehicle-seatpicker
+```
+
+## Basic Usage
+
+## Instalasi
 
 ```bash
 npm install react-vehicle-seatpicker
@@ -28,7 +76,7 @@ atau
 yarn add react-vehicle-seatpicker
 ```
 
-## 🚀 Penggunaan Dasar
+## Penggunaan Dasar
 
 ```tsx
 import React, { useState } from 'react';
@@ -52,7 +100,25 @@ function App() {
 }
 ```
 
-## 🔧 Props API
+## Props API
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `layout` | `Array<Array<Seat \| null>>` | `undefined` | Custom seat layout (optional) |
+| `reservedSeats` | `(string\|number)[]` | `[]` | Array of reserved seat IDs |
+| `selectedSeats` | `(string\|number)[]` | `[]` | Array of selected seat IDs |
+| `onSelect` | `(seats: (string\|number)[]) => void` | `undefined` | Callback when seats are selected |
+| `rowConfig` | `number[]` | auto | Number of seats per row configuration |
+| `seatCount` | `number` | auto | Total number of seats |
+| `withDriver` | `boolean` | `true` | Show driver seat |
+| `vehicleType` | `VehicleType` | `"minibus"` | Vehicle type |
+| `seatTypes` | `Record<string\|number, SeatType>` | `{}` | Seat type mapping per ID |
+| `defaultSeatType` | `SeatType` | `"regular"` | Default seat type |
+| `floorsConfig` | `Record<string, FloorConfig>` | `undefined` | Multi-floor configuration |
+| `selectedFloor` | `string` | `"1"` | Selected floor |
+| `onFloorChange` | `(floor: string) => void` | `undefined` | Floor change callback |
+
+### Props API (Bahasa Indonesia)
 
 | Prop | Type | Default | Deskripsi |
 |------|------|---------|-----------|
@@ -70,7 +136,40 @@ function App() {
 | `selectedFloor` | `string` | `"1"` | Lantai yang dipilih |
 | `onFloorChange` | `(floor: string) => void` | `undefined` | Callback perubahan lantai |
 
-## 🚌 Tipe Kendaraan
+## Vehicle Types
+
+### Minibus (Default)
+```tsx
+<SeatPickerComponent
+  vehicleType="minibus"
+  rowConfig={[2, 2, 2, 2]} // 2 seats per row
+/>
+```
+
+### Bus
+```tsx
+<SeatPickerComponent
+  vehicleType="bus"
+  rowConfig={[4, 4, 4, 4, 4, 4, 4]} // 4 seats per row
+/>
+```
+
+### Van
+```tsx
+<SeatPickerComponent
+  vehicleType="elf"
+  rowConfig={[1, 2, 2, 2, 1]} // Van layout
+/>
+```
+
+## Seat Types
+
+- **regular**: Standard seat (gray)
+- **vip**: VIP seat (purple)
+- **sleeper**: Sleeper seat (blue)
+- **driver**: Driver seat (yellow with steering wheel icon)
+
+## Tipe Kendaraan
 
 ### Minibus (Default)
 ```tsx
@@ -96,7 +195,7 @@ function App() {
 />
 ```
 
-## 🎨 Tipe Kursi
+## Tipe Kursi
 
 - **regular**: Kursi biasa (abu-abu)
 - **vip**: Kursi VIP (ungu)
@@ -117,7 +216,7 @@ const seatTypes = {
 />
 ```
 
-## 🏢 Bus Multi-Lantai
+## Multi-Floor Bus
 
 ```tsx
 const floorsConfig = {
@@ -133,7 +232,7 @@ const floorsConfig = {
   }
 };
 
-function MultiplFloorBus() {
+function MultipleFloorBus() {
   const [selectedFloor, setSelectedFloor] = useState('1');
   
   return (
@@ -147,7 +246,70 @@ function MultiplFloorBus() {
 }
 ```
 
-## 🎛️ Layout Custom
+## Bus Bertingkat
+
+```tsx
+const floorsConfig = {
+  '1': {
+    row_config: [4, 4, 4, 4],
+    seat_types: { '1': 'vip', '2': 'vip' },
+    default_seat_type: 'regular'
+  },
+  '2': {
+    row_config: [4, 4, 4],
+    seat_types: { '17': 'sleeper', '18': 'sleeper' },
+    default_seat_type: 'regular'
+  }
+};
+
+function BusBertingkat() {
+  const [selectedFloor, setSelectedFloor] = useState('1');
+  
+  return (
+    <SeatPickerComponent
+      vehicleType="bus"
+      floorsConfig={floorsConfig}
+      selectedFloor={selectedFloor}
+      onFloorChange={setSelectedFloor}
+    />
+  );
+}
+```
+```
+
+## Custom Layout
+
+```tsx
+// Create manual layout
+const customLayout = [
+  [null, null, { id: 'D', number: 'Driver', isReserved: true, isDriver: true }],
+  [{ id: 1, number: '1', isReserved: false }, null, { id: 2, number: '2', isReserved: false }],
+  [{ id: 3, number: '3', isReserved: false }, null, { id: 4, number: '4', isReserved: false }]
+];
+
+<SeatPickerComponent layout={customLayout} />
+```
+
+## Separate Components
+
+The library also provides separate components:
+
+```tsx
+import { 
+  SeatButton, 
+  BusFrame, 
+  SeatLegend,
+  ToggleTabs 
+} from 'react-vehicle-seatpicker';
+
+// Use components separately
+<SeatLegend />
+<BusFrame vehicleType="bus">
+  {/* content */}
+</BusFrame>
+```
+
+## Layout Kustom
 
 ```tsx
 // Membuat layout manual
@@ -160,7 +322,7 @@ const customLayout = [
 <SeatPickerComponent layout={customLayout} />
 ```
 
-## 🧩 Komponen Terpisah
+## Komponen Terpisah
 
 Library juga menyediakan komponen-komponen terpisah:
 
@@ -179,7 +341,7 @@ import {
 </BusFrame>
 ```
 
-## 🛠️ Utility Functions
+## Utility Functions
 
 ```tsx
 import { generateBusLayout, generateMinibusLayout } from 'react-vehicle-seatpicker';
