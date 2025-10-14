@@ -10,7 +10,7 @@ export const RegularSeatIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
         viewBox="0 0 16 16" 
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{transform: 'rotate(180deg)'}}
+        style={{ transform: 'rotate(180deg)' }}
     >
         <rect x="2" y="2" width="12" height="3" rx="1" fill="none" stroke="currentColor" strokeWidth="1.2" />
         <rect x="3" y="5" width="10" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1.2" />
@@ -20,7 +20,7 @@ export const RegularSeatIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
 );
 
 export const SleeperSeatIcon: React.FC<{ size?: number }> = ({ size = 18 }) => (
-    <svg width={size} height={size + 2} viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{transform: 'rotate(180deg)'}}>
+    <svg width={size} height={size + 2} viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(180deg)' }}>
         <rect x="1" y="3" width="12" height="14" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
         <rect x="3" y="1" width="8" height="4" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
         <path d="M2 5 L8 5 L12 9 L12 15 L6 15 Z" fill="none" stroke="currentColor" strokeWidth="1" />
@@ -107,7 +107,7 @@ export const BusFrame: React.FC<{ children: React.ReactNode; vehicleType?: Vehic
             {vehicleType === "bus" && (
                 <>
                     <div className={styles.busFront}>
-                        <span className={styles.frontText}>Depan Bus</span>
+                        <span className={styles.frontText}>Bus Front</span>
                     </div>
                     <div className={styles.frontLightLeft} />
                     <div className={styles.frontLightRight} />
@@ -115,7 +115,7 @@ export const BusFrame: React.FC<{ children: React.ReactNode; vehicleType?: Vehic
                         {children}
                     </div>
                     <div className={styles.busBack}>
-                        <span className={styles.busBackText}>Belakang Bus</span>
+                        <span className={styles.busBackText}>Bus Rear</span>
                     </div>
                     <div className={styles.busBackLightLeft} />
                     <div className={styles.busBackLightRight} />
@@ -134,10 +134,10 @@ export const SeatLegend: React.FC<SeatLegendProps> = ({
     show = true, 
     items = ["reserved", "selected", "available", "driver", "sleeper", "vip"],
     labels = {
-        reserved: "Sudah dipesan",
-        selected: "Dipilih",
-        available: "Tersedia",
-        driver: "Sopir",
+        reserved: "Reserved",
+        selected: "Selected",
+        available: "Available",
+        driver: "Driver",
         sleeper: "Sleeper",
         vip: "VIP"
     },
@@ -198,7 +198,7 @@ export const SeatLegend: React.FC<SeatLegendProps> = ({
 
     return (
         <div className={styles.legendContainer}>
-            {items.map((item, index) => (
+            {items.map((item) => (
                 <React.Fragment key={item}>
                     {legendItems[item]}
                 </React.Fragment>

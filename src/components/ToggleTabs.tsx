@@ -22,7 +22,7 @@ const ToggleTabs: React.FC<ToggleTabsProps> = ({
           onClick={() => onChange(tab)}
           className={`${styles.tab} ${active === tab ? styles.active : ''}`}
         >
-          {tab.replace('floor-', 'Lantai ')}
+          {tab.replace('floor-', 'Deck ')}
         </button>
       ))}
     </div>
