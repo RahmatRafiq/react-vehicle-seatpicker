@@ -1,5 +1,33 @@
 # Changelog
 
+## [2.0.3] - 2025-10-14
+
+### Added
+- Dokumentasi baru dan halaman demo interaktif di [react-vehicle-seatpicker-demo.vercel.app](https://react-vehicle-seatpicker-demo.vercel.app/)
+- Preview layout untuk berbagai jenis kendaraan:
+  - Bus Single Floor
+  - Bus Double Deck
+  - Minibus
+  - ELF
+- Penambahan penjelasan detail di README untuk:
+  - `legendConfig`
+  - `seatColors`
+  - `floorsConfig`
+  - `seatRotation`
+- Contoh penggunaan `SeatPicker` yang lebih lengkap dan realistis
+
+### Changed
+- Penyusunan ulang struktur dokumentasi agar lebih konsisten dan mudah dibaca
+- Penambahan badge versi NPM dan lisensi pada bagian header README
+- Perbaikan heading agar mengikuti hierarchy yang seragam di README
+
+### Fixed
+- Perbaikan minor pada posisi kursi supir di layout ELF
+- Penyesuaian warna legend agar lebih kontras di background terang
+- Penghapusan duplikasi dokumentasi props `seatColors`
+
+---
+
 ## [2.0.2] - 2025-10-06
 
 ### Fixed

@@ -1,6 +1,6 @@
 {
   "name": "react-vehicle-seatpicker",
-    "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A flexible and customizable React component for vehicle seat selection (bus, minibus, etc.)",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
