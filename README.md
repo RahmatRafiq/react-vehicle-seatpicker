@@ -1,91 +1,68 @@
 # React Vehicle Seat Picker
 
-Komponen React yang fleksibel untuk pemilihan kursi kendaraan (bus, minibus, elf) dengan dukungan multi-lantai dan berbagai tipe kursi.
+Flexible React component for vehicle seat selection (bus, minibus, elf) with multi-floor support and multiple seat types.
 
-[![NPM Version](https://img.shields.io/npm/v/react-vehicle-seatpicker)](https://www.npmjs.com/package/react-vehicle-seatpicker)
+[![NPM Version](https://img.shields.io/npm/v/react-vehicle-seatpicker)](https://www.npmjs.com/package/react-vehicle-seatpicker)  
 [![License](https://img.shields.io/npm/l/react-vehicle-seatpicker)](https://github.com/RahmatRafiq/react-vehicle-seatpicker/blob/main/LICENSE)
+
+## Demo
+
+Live demo and documentation: https://react-vehicle-seatpicker-demo.vercel.app/
 
 ## Preview
 
-Di bawah ini adalah beberapa contoh tampilan komponen untuk berbagai tipe kendaraan:
+Below are example views of the component for different vehicle types.
 
-### Bus Single Floor
-![React Vehicle Seat Picker - Bus Single Floor](./image.png)
-Tampilan bus single floor dengan berbagai tipe kursi dan fitur:
-- Kursi regular (putih)
-- Kursi VIP (kuning)
-- Kursi sleeper (ungu)
-- Kursi yang sudah dipesan (abu-abu)
-- Kursi yang dipilih (hijau)
-- Kursi supir (biru)
+![React Vehicle Seat Picker - Bus Single Floor](./image.png)  
 
-### Bus Double Deck
-![React Vehicle Seat Picker - Bus Double Deck](./image.png)
-Bus dengan dua lantai, menampilkan:
-- Tab pemilihan lantai (Lantai 1/2)
-- Layout yang berbeda untuk setiap lantai
-- Kursi supir hanya di lantai 1
-
-### Minibus
-![React Vehicle Seat Picker - Minibus](./image.png)
-Layout minibus dengan:
-- Layout 2-2 (2 kursi di setiap sisi)
-- Gang di tengah
-- Kursi supir di depan
-
-### ELF
-![React Vehicle Seat Picker - ELF](./image.png)
-Layout ELF dengan:
-- Konfigurasi 1-2-2-2-1
-- Gang di tengah
-- Cocok untuk kendaraan ukuran sedang
 
 ## Features
 
-- 🚌 Mendukung berbagai tipe kendaraan (bus, minibus, elf)
-- 🎨 Tipe kursi yang dapat disesuaikan (regular, VIP, sleeper, driver)
-- 📝 Konfigurasi layout fleksibel
-- 🔄 Dukungan multi-lantai
-- 💡 TypeScript support
-- ⚡ Ringan dan performa tinggi
+- Supports multiple vehicle types (bus, minibus, elf)
+- Customizable seat types (regular, VIP, sleeper, driver)
+- Flexible layout configuration
+- Multi-floor support
+- TypeScript support
+- Lightweight and performant
 
-## Instalasi
+## Installation
 
 ```bash
 npm install react-vehicle-seatpicker
-# atau
+# or
 yarn add react-vehicle-seatpicker
-# atau
+# or
 pnpm add react-vehicle-seatpicker
 ```
 
-## Penggunaan Dasar
+## Basic Usage
 
-### 1. Minibus Sederhana
+### 1. Simple Minibus
 
 ```jsx
 import { SeatPicker } from 'react-vehicle-seatpicker';
 
 function MinibusExample() {
   const handleSelect = (selectedSeats) => {
-    console.log('Kursi yang dipilih:', selectedSeats);
+    console.log('Selected seats:', selectedSeats);
   };
 
   return (
     <SeatPicker
       vehicleType="minibus"
-      rowConfig={[2, 2, 2, 2]} // 4 baris, masing-masing 2 kursi
+      rowConfig={[2, 2, 2, 2]}
       withDriver={true}
       onSelect={handleSelect}
-      reservedSeats={['1', '2']} // Kursi yang sudah dipesan
+      reservedSeats={['1', '2']}
     />
   );
 }
 ```
 
-### 2. Bus dengan Multi-Lantai
+### 2. Bus with Multiple Floors
 
 ```jsx
+import { useState } from 'react';
 import { SeatPicker } from 'react-vehicle-seatpicker';
 
 function BusExample() {
@@ -93,7 +70,7 @@ function BusExample() {
 
   const floorsConfig = {
     '1': {
-      row_config: [4, 4, 4, 4], // 4 baris di lantai 1
+      row_config: [4, 4, 4, 4],
       seat_types: {
         '1': 'vip',
         '2': 'vip',
@@ -102,7 +79,7 @@ function BusExample() {
       default_seat_type: 'regular'
     },
     '2': {
-      row_config: [3, 3, 3], // 3 baris di lantai 2
+      row_config: [3, 3, 3],
       seat_types: {},
       default_seat_type: 'regular'
     }
@@ -114,14 +91,14 @@ function BusExample() {
       floorsConfig={floorsConfig}
       selectedFloor={selectedFloor}
       onFloorChange={setSelectedFloor}
-      onSelect={(seats) => console.log('Kursi terpilih:', seats)}
+      onSelect={(seats) => console.log('Selected seats:', seats)}
       reservedSeats={['1', '5']}
     />
   );
 }
 ```
 
-### 3. Konfigurasi Tipe Kursi Custom
+### 3. Custom Seat Type Configuration
 
 ```jsx
 import { SeatPicker } from 'react-vehicle-seatpicker';
@@ -130,14 +107,14 @@ function CustomSeatTypesExample() {
   return (
     <SeatPicker
       vehicleType="elf"
-      rowConfig={[1, 2, 2, 2, 1]} // Layout khusus untuk Elf
+      rowConfig={[1, 2, 2, 2, 1]}
       seatTypes={{
         '1': 'vip',
         '2': 'sleeper',
         '3': 'regular'
       }}
       defaultSeatType="regular"
-      onSelect={(seats) => console.log('Kursi terpilih:', seats)}
+      onSelect={(seats) => console.log('Selected seats:', seats)}
     />
   );
 }
@@ -145,130 +122,130 @@ function CustomSeatTypesExample() {
 
 ## Props
 
-| Prop | Type | Deskripsi |
-|------|------|-----------|
-| `vehicleType` | `"minibus" \| "bus" \| "elf"` | Tipe kendaraan yang akan digunakan |
-| `rowConfig` | `number[]` | Konfigurasi jumlah kursi per baris |
-| `withDriver` | `boolean` | Menampilkan kursi supir (default: `true`) |
-| `reservedSeats` | `(string\|number)[]` | Array ID kursi yang sudah dipesan |
-| `selectedSeats` | `(string\|number)[]` | Array ID kursi yang sedang dipilih |
-| `onSelect` | `(seats: (string\|number)[]) => void` | Callback saat kursi dipilih/dibatalkan |
-| `seatTypes` | `Record<string\|number, SeatType>` | Tipe kursi untuk ID tertentu |
-| `defaultSeatType` | `"regular" \| "vip" \| "sleeper"` | Tipe default untuk kursi |
-| `floorsConfig` | `Record<string, FloorConfig>` | Konfigurasi untuk bus multi-lantai |
-| `selectedFloor` | `string` | Lantai yang sedang aktif |
-| `onFloorChange` | `(floor: string) => void` | Callback saat lantai diubah |
-| `legendConfig` | `LegendConfig` | Konfigurasi legend (show/hide, items, labels) |
-| `seatColors` | `SeatColors` | Kustomisasi warna untuk setiap tipe kursi |
+| Prop | Type | Description |
+|------|------|-------------|
+| `vehicleType` | `"minibus" \| "bus" \| "elf"` | Vehicle type to use |
+| `rowConfig` | `number[]` | Seats per row configuration |
+| `withDriver` | `boolean` | Show driver seat (default: `true`) |
+| `reservedSeats` | `(string\|number)[]` | Array of reserved seat IDs |
+| `selectedSeats` | `(string\|number)[]` | Array of currently selected seat IDs |
+| `onSelect` | `(seats: (string\|number)[]) => void` | Callback when seat(s) are selected/unselected |
+| `seatTypes` | `Record<string\|number, SeatType>` | Seat type overrides by ID |
+| `defaultSeatType` | `"regular" \| "vip" \| "sleeper"` | Default seat type |
+| `floorsConfig` | `Record<string, FloorConfig>` | Multi-floor configuration for buses |
+| `selectedFloor` | `string` | Currently active floor |
+| `onFloorChange` | `(floor: string) => void` | Callback when floor changes |
+| `legendConfig` | `LegendConfig` | Legend configuration (show/hide, items, labels) |
+| `seatColors` | `SeatColors` | Color customization for seat types |
 
 ## Type Definitions
 
-### Tipe Data Dasar
+### Core Types
+
 ```typescript
 type SeatType = "regular" | "driver" | "sleeper" | "vip" | string;
 type VehicleType = "minibus" | "bus" | "elf" | string;
 
 interface Seat {
-    id: string | number;
-    number: string;
-    isReserved: boolean;
-    isDriver?: boolean;
-    type?: SeatType;
-    seatRotation?: number;
+  id: string | number;
+  number: string;
+  isReserved: boolean;
+  isDriver?: boolean;
+  type?: SeatType;
+  seatRotation?: number;
 }
 ```
 
-### Konfigurasi Legend
+### LegendConfig
+
 ```typescript
 interface LegendConfig {
-    show?: boolean;
-    items?: ("reserved" | "selected" | "available" | "driver" | "sleeper" | "vip")[];
-    labels?: {
-        reserved?: string;
-        selected?: string;
-        available?: string;
-        driver?: string;
-        sleeper?: string;
-        vip?: string;
-    };
-}
-```
-
-### Konfigurasi Warna
-```typescript
-interface SeatColors {
+  show?: boolean;
+  items?: ("reserved" | "selected" | "available" | "driver" | "sleeper" | "vip")[];
+  labels?: {
     reserved?: string;
     selected?: string;
     available?: string;
     driver?: string;
     sleeper?: string;
     vip?: string;
+  };
 }
 ```
 
-## Tipe Kursi
+### SeatColors
 
-Komponen mendukung beberapa tipe kursi:
-- `regular` - Kursi standar
-- `driver` - Kursi supir (otomatis untuk `withDriver={true}`)
-- `sleeper` - Kursi tidur/reclining
-- `vip` - Kursi VIP
+```typescript
+interface SeatColors {
+  reserved?: string;
+  selected?: string;
+  available?: string;
+  driver?: string;
+  sleeper?: string;
+  vip?: string;
+}
+```
 
-## Layout Default
+## Seat Types
+
+- `regular` — Standard seat
+- `driver` — Driver seat (added automatically when `withDriver={true}`)
+- `sleeper` — Reclining / sleeper seat
+- `vip` — VIP / first-class seat
+
+## Default Layouts
 
 ### Minibus
-```typescript
-const defaultMinibusConfig = [2, 2, 2, 2]; // 4 baris, 2 kursi per baris
+```ts
+const defaultMinibusConfig = [2, 2, 2, 2];
 ```
 
 ### Bus
-```typescript
-const defaultBusConfig = [4, 4, 4, 4, 4, 4, 4]; // 7 baris, 4 kursi per baris
+```ts
+const defaultBusConfig = [4, 4, 4, 4, 4, 4, 4];
 ```
 
 ### Elf
-```typescript
-const defaultElfConfig = [1, 2, 2, 2, 1]; // Layout khusus untuk Elf
+```ts
+const defaultElfConfig = [1, 2, 2, 2, 1];
 ```
 
-## Contoh Layout Custom
+## Custom Layout Examples
 
-### Layout Manual
+### Manual Layout
 
 ```jsx
 const customLayout = [
-  // Baris pertama dengan supir
-  [null, null, null, null, null, { id: "D", number: "Sopir", isReserved: true, isDriver: true }],
-  // Baris penumpang
+  [null, null, null, null, null, { id: "D", number: "Driver", isReserved: true, isDriver: true }],
   [
-    { id: 1, number: "1", isReserved: false }, 
-    { id: 2, number: "2", isReserved: false }, 
-    null, // gang
-    { id: 3, number: "3", isReserved: false }, 
+    { id: 1, number: "1", isReserved: false },
+    { id: 2, number: "2", isReserved: false },
+    null,
+    { id: 3, number: "3", isReserved: false },
     { id: 4, number: "4", isReserved: false }
   ]
 ];
 
 <SeatPicker
   layout={customLayout}
-  onSelect={(seats) => console.log('Kursi dipilih:', seats)}
+  onSelect={(seats) => console.log('Selected seats:', seats)}
 />
 ```
 
-### Bus Multi-Lantai
+### Multi-Floor Bus
 
 ```jsx
 const busConfig = {
-  '1': { // Lantai 1
-    row_config: [4, 4, 4], // 3 baris, 4 kursi per baris
+  '1': {
+    row_config: [4, 4, 4],
     seat_types: {
-      '1': 'vip',     // Kursi 1 tipe VIP
-      '2': 'sleeper'  // Kursi 2 tipe Sleeper
+      '1': 'vip',
+      '2': 'sleeper'
     },
     default_seat_type: 'regular'
   },
-  '2': { // Lantai 2
-    row_config: [3, 3, 3], // 3 baris, 3 kursi per baris
+  '2': {
+    row_config: [3, 3, 3],
     seat_types: {},
     default_seat_type: 'regular'
   }
@@ -278,26 +255,26 @@ const busConfig = {
   vehicleType="bus"
   floorsConfig={busConfig}
   selectedFloor="1"
-  onFloorChange={(floor) => console.log('Pindah ke lantai:', floor)}
-  onSelect={(seats) => console.log('Kursi dipilih:', seats)}
+  onFloorChange={(floor) => console.log('Switched to floor:', floor)}
+  onSelect={(seats) => console.log('Selected seats:', seats)}
 />
 ```
 
-## Fitur Tambahan
+## Additional Features
 
-### Kustomisasi Legend dan Warna
+### Customize Legend and Colors
 
-#### Legend yang Dapat Disesuaikan
+#### Custom Legend
 ```jsx
 <SeatPicker
   legendConfig={{
-    show: true, // tampilkan atau sembunyikan legend
-    items: ["reserved", "selected", "available", "driver"], // pilih item yang ingin ditampilkan
+    show: true,
+    items: ["reserved", "selected", "available", "driver"],
     labels: {
-      reserved: "Sudah Dipesan",
-      selected: "Dipilih",
-      available: "Tersedia",
-      driver: "Supir",
+      reserved: "Reserved",
+      selected: "Selected",
+      available: "Available",
+      driver: "Driver",
       sleeper: "Sleeper",
       vip: "First Class"
     }
@@ -305,26 +282,28 @@ const busConfig = {
 />
 ```
 
-#### Kustomisasi Warna
+#### Custom Colors
 ```jsx
 <SeatPicker
   seatColors={{
-    reserved: "#E0E0E0",    // Warna untuk kursi yang sudah dipesan
-    selected: "#4CAF50",    // Warna untuk kursi yang dipilih
-    available: "#FFFFFF",   // Warna untuk kursi tersedia
-    driver: "#2196F3",     // Warna untuk kursi supir
-    sleeper: "#9C27B0",    // Warna untuk kursi sleeper
-    vip: "#FFC107"         // Warna untuk kursi VIP
+    reserved: "#E0E0E0",
+    selected: "#4CAF50",
+    available: "#FFFFFF",
+    driver: "#2196F3",
+    sleeper: "#9C27B0",
+    vip: "#FFC107"
   }}
 />
 ```
 
-### Frame Kendaraan
-- Bus: Menampilkan frame bus lengkap dengan indikator depan dan belakang
-- Minibus/Elf: Menampilkan frame sederhana
+### Vehicle Frame
 
-### Rotasi Kursi
-Anda dapat merotasi kursi dengan menambahkan properti `seatRotation` (dalam derajat):
+- Bus: full bus frame with front/rear indicators
+- Minibus/Elf: simplified frame
+
+### Seat Rotation
+
+Add a `seatRotation` property (in degrees) to rotate seats:
 
 ```jsx
 const layout = [
@@ -333,19 +312,19 @@ const layout = [
       id: 1, 
       number: "1", 
       isReserved: false,
-      seatRotation: 90 // Kursi dirotasi 90 derajat
+      seatRotation: 90
     }
   ]
 ];
 ```
 
-## Kontribusi
+## Contributing
 
-Kontribusi sangat diterima! Silakan buat Pull Request untuk perbaikan atau penambahan fitur.
+Contributions are welcome. Please open a Pull Request for improvements or new features.
 
-## Lisensi
+## License
 
-Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LICENSE](LICENSE) untuk detail.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## Author
 
@@ -353,4 +332,4 @@ RahmatRafiq
 
 ## Support
 
-Jika Anda memiliki pertanyaan atau butuh bantuan, silakan buat issue di [GitHub repository](https://github.com/RahmatRafiq/react-vehicle-seatpicker/issues).
+If you have questions or need help, please open an issue in the [GitHub repository](https://github.com/RahmatRafiq/react-vehicle-seatpicker/issues).
